@@ -29,5 +29,6 @@ public class BrandCsvExporter extends AbstractExporter{
 		}
 		
 		csvWriter.close();
+		
 	}
 }
