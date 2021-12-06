@@ -14,7 +14,7 @@ import com.shopme.common.entity.Category;
 
 @ExtendWith(MockitoExtension.class)
 @ExtendWith(SpringExtension.class)
-public class CategoryServiceTests {
+public class CategoryServiceTest {
 	
 	@MockBean
 	private CategoryRepository repo;
