@@ -137,8 +137,8 @@ public class CategoryController {
 	
 	@GetMapping("/categories/delete/{id}")
 	public String deleteCategory(@PathVariable(name = "id") Integer id, 
-			RedirectAttributes redirecAttritibutes,
-			Model model) {
+								 RedirectAttributes redirecAttritibutes,
+								 Model model) {
 		
 		try {
 			service.delete(id);
