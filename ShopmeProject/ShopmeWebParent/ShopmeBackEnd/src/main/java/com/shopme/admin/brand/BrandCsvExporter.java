@@ -1,4 +1,4 @@
-package com.shopme.admin.brand.exporter;
+package com.shopme.admin.brand;
 
 import java.io.IOException;
 import java.util.List;

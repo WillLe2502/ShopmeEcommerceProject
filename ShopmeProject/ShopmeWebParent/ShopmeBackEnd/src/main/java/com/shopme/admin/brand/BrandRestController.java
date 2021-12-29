@@ -1,4 +1,4 @@
-package com.shopme.admin.brand.controller;
+package com.shopme.admin.brand;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -11,8 +11,6 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RestController;
 
-import com.shopme.admin.brand.BrandNotFoundException;
-import com.shopme.admin.brand.BrandService;
 import com.shopme.common.entity.Brand;
 import com.shopme.common.entity.Category;
 

@@ -1,4 +1,4 @@
-package com.shopme.admin.brand.controller;
+package com.shopme.admin.brand;
 
 import java.io.IOException;
 import java.util.List;
@@ -19,11 +19,6 @@ import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import com.shopme.admin.FileUploadUtil;
-import com.shopme.admin.brand.BrandNotFoundException;
-import com.shopme.admin.brand.BrandService;
-import com.shopme.admin.brand.exporter.BrandCsvExporter;
-import com.shopme.admin.brand.exporter.BrandExcelExporter;
-import com.shopme.admin.brand.exporter.BrandPdfExporter;
 import com.shopme.admin.category.CategoryService;
 import com.shopme.common.entity.Brand;
 import com.shopme.common.entity.Category;

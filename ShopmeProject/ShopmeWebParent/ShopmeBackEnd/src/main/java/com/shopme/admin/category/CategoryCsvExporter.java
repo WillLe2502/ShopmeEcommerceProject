@@ -1,4 +1,4 @@
-package com.shopme.admin.category.exporter;
+package com.shopme.admin.category;
 
 import java.io.IOException;
 import java.util.List;

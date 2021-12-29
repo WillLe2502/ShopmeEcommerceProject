@@ -1,4 +1,4 @@
-package com.shopme.admin.category.controller;
+package com.shopme.admin.category;
 
 public class CategoryPageInfo {
 	private int totalPages;
