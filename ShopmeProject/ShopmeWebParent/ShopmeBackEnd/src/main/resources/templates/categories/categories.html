@@ -85,10 +85,9 @@
 			<div th:replace="layouts :: footer"/>
 		</div>
 		
+		<script th:src="@{/js/common_list.js}"></script>
 		<script type="text/javascript">
-			function clearFilter(){
-				window.location = "[[@{/categories}]]";
-			}
+			moduleURL = "[[@{/categories}]]";
 			
 			$(document).ready(function(){
 				$("#logoutLink").on("click", function(e){
@@ -103,14 +102,6 @@
 					showDeleteConfirmModal($(this), 'category');
 				});
 			});
-			
-			function showDeleteConfirmModal(link, entityName){
-				entityId = link.attr("entityId");
-				
-				$("#yesButton").attr("href", link.attr("href"));
-				$("#confirmText").text("Are you sure you want to delete this " + entityName + " ID " + entityId + "?");
-				$("#confirmModal").modal();
-			}
 		</script>
 		
 	</body>
