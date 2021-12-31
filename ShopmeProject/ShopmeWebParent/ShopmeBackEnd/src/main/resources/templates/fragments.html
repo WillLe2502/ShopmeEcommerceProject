@@ -4,7 +4,10 @@
 <! –– Column Link ––---------------------------------------------------------------------->  
 
 	<th th:fragment="column_link(moduleURL, fieldName, columnLabel, removeTag)" th:remove="${removeTag}">
-		<a th:href="@{${moduleURL} + '/pages/'+${currentPage}+'?sortField='+${fieldName}+'&sortDir='+${sortField!=fieldName?sortDir:reverseSortDir}+${keyword!=null?'&keyword='+keyword:''}}"
+		<a th:href="@{${moduleURL} + '/pages/' + ${currentPage} 
+					+ '?sortField=' + ${fieldName} + '&sortDir=' + ${sortField!=fieldName?sortDir:reverseSortDir} 
+					+ ${keyword!=null ? '&keyword='  +keyword:''}
+					+ ${categoryId != null ? '&categoryId=' + categoryId : ''}}"
 			class="text-white">
 			[[${columnLabel}]]
 		</a>
@@ -16,7 +19,10 @@
 
 	<a th:fragment="page_link(moduleURL, pageNum ,label)"
 		class="page-link" 
-		th:href="@{${moduleURL} + '/pages/' + ${pageNum} + '?sortField=' + ${sortField} + '&sortDir=' + ${sortDir} + ${keyword != null ? '&keyword=' + keyword : ''}}">
+		th:href="@{${moduleURL} + '/pages/' + ${pageNum} 
+				+ '?sortField=' + ${sortField} + '&sortDir=' + ${sortDir} 
+				+ ${keyword != null ? '&keyword=' + keyword : ''} 
+				+ ${categoryId != null ? '&categoryId=' + categoryId : ''}}">
 			[[${label}]]
 	</a>
 	

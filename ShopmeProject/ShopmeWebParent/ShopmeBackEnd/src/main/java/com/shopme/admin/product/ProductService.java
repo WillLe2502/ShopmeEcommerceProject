@@ -27,7 +27,8 @@ public class ProductService {
 		return (List<Product>) repo.findAll();
 	}
 	
-	public Page<Product> listByPage(int pageNum, String sortField, String sortDir, String keyword){
+	public Page<Product> listByPage(int pageNum, String sortField, String sortDir, 
+									String keyword, Integer categoryId){
 		Sort sort = Sort.by(sortField);
 		
 		if(sortDir.equals("asc")) {
@@ -38,8 +39,18 @@ public class ProductService {
 		
 		Pageable pageable = PageRequest.of(pageNum - 1, PRODUCTS_PER_PAGE, sort);
 		
-		if (keyword != null) {
+		if (keyword != null && !keyword.isEmpty()) {
+			if (categoryId != null && categoryId > 0) {
+				String categoryIdMatch = "-" + String.valueOf(categoryId) + "-";
+				return repo.searchInCategory(categoryId, categoryIdMatch, keyword, pageable);
+			}
+			
 			return repo.findAll(keyword, pageable);
+		}
+		
+		if (categoryId != null && categoryId > 0) {
+			String categoryIdMatch = "-" + String.valueOf(categoryId) + "-";
+			return repo.findAllInCategory(categoryId, categoryIdMatch, pageable);
 		}
 		
 		return repo.findAll(pageable);
