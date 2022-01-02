@@ -6,10 +6,21 @@
 		<div class = "container-fluid">
 			<div th:replace="layouts :: divnavbar"/>
 			<div>
-				<h1>Welcome to Shopme eCommerce</h1>
+				<h1>Shopping by Categories</h1>
 			</div>
-			<div th:replace="layouts :: footer"/>
 			
+			<div class="row">
+				<div class="col" th:each="category : ${listCategories}">
+					<div><img th:src="@{${category.imagePath}}" width="100"/></div>
+					<div>
+						<a th:href="@{'/c/' + ${category.alias}}">[[${category.name}]]</a>
+					</div>
+				</div>
+			</div>
 		</div>
+		
+		<div th:replace="layouts :: footer"/>
 	</body>
+	
+	
 </html>
