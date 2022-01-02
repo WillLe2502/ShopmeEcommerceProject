@@ -4,15 +4,15 @@ $(document).ready(function(){
 		document.logoutForm.submit();
 	});
 	
-	/** 
+	
 		customiseDropDownMenu();
-	*/
+	
 });
 
 /**
 	This code for icon on drop down menu forward to user home page
  */
-/*
+
 function customiseDropDownMenu(){
 	$(".navbar .dropdown").hover(
 		function(){
@@ -27,4 +27,3 @@ function customiseDropDownMenu(){
 		location.href = this.href;
 	});
 }
-*/
