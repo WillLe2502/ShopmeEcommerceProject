@@ -55,8 +55,8 @@
 						<span>$[[${product.price}]]</span>
 					</div>
 					<div th:if="${product.discountPercentage > 0}">
-					 	<span style="font-size: Larger; color: darkred">$[[${product.discountPrice}]]</span>
-						<del><span>$[[${product.price}]]</span></del>
+					 	<span style="font-size: Larger; color: darkred">$ [[${product.discountPrice}]]</span>
+						<del><span>$ [[${product.price}]]</span></del>
 					</div>
 				</div>
 			</th:block>
