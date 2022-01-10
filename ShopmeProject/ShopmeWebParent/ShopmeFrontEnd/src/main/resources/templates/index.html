@@ -5,12 +5,13 @@
 	<body>
 		<div class = "container-fluid">
 			<div th:replace="layouts :: divnavbar"/>
+			<div th:replace="layouts :: search_nav"/>
 			<div>
 				<h1>Shopping by Categories</h1>
 			</div>
 			
 			<div class="row">
-				<div class="col" th:each="category : ${listCategories}">
+				<div class="col-sm-2" th:each="category : ${listCategories}">
 					<div><img th:src="@{${category.imagePath}}" width="100"/></div>
 					<div>
 						<a th:href="@{'/c/' + ${category.alias}}">[[${category.name}]]</a>

@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeLeaf.org">
+<head th:replace="layouts :: header(${pageTitle}, 'none')"/>
+
+<body>
+	<div class = "container-fluid">
+		<div th:replace="layouts :: divnavbar"/>
+		<div th:replace="layouts :: search_nav"/>
+		
+		<div th:if="${totalItems > 0}">
+			<h2>Search Results for '[[${keyword}]]'</h2>
+		</div>
+		
+		<div th:unless="${totalItems > 0}">
+			<h3>No Match Found for '[[${keyword}]]'</h3>
+		</div>
+		
+		<div class="row">
+			<th:block th:each="product : ${listResult}">
+				<div th:replace="product/product_fragment :: content"/>
+			</th:block>
+		</div>
+		
+		<div th:replace="fragments :: pagination('/search', 'product')"></div>
+		
+	</div>
+	
+	<div th:replace="layouts :: footer"/>
+</body>
+	
+	
+</html>
