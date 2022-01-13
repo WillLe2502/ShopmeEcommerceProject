@@ -37,6 +37,20 @@ public class CountryRepositoryTest {
 	}
 	
 	@Test
+	public void testCreateCountry3() {
+		Country country = repo.save(new Country("United Kingdom", "UK"));
+		assertThat(country).isNotNull();
+		assertThat(country.getId()).isGreaterThan(0);
+	}
+	
+	@Test
+	public void testCreateCountry4() {
+		Country country = repo.save(new Country("Vietnam", "VN"));
+		assertThat(country).isNotNull();
+		assertThat(country.getId()).isGreaterThan(0);
+	}
+	
+	@Test
 	public void testListCountries() {
 		List<Country> listCountries = repo.findAllByOrderByNameAsc();
 		listCountries.forEach(System.out::println);
@@ -48,9 +62,11 @@ public class CountryRepositoryTest {
 	public void testUpdateCountry() {
 		Integer id = 2;
 		String name = "Republic of India";
+		String code = "IN";
 
 		Country country = repo.findById(id).get();
 		country.setName(name);
+		country.setCode(code);
 
 		Country updatedCountry = repo.save(country);
 
