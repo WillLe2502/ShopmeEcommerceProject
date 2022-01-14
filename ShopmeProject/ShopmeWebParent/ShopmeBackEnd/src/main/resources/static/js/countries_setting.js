@@ -5,7 +5,7 @@ var buttonUpdateCountry;
 var buttonDeleteCountry;
 var labelCountryName;
 var fieldCountryName;
-var fieldCountryCode
+var fieldCountryCode;
 
 $(document).ready(function(){
 	buttonLoad = $("#buttonLoadCountries");
