@@ -24,7 +24,7 @@ public class SettingRepositoryTest {
 	public void testFindByTwoCategories() {
 		List<Setting> settings = repo.findByTwoCategories(SettingCategory.GENERAL, SettingCategory.CURRENCY);
 		
-		settings.forEach(System.out::println);
+		//settings.forEach(System.out::println);
 	}
 	
 }
