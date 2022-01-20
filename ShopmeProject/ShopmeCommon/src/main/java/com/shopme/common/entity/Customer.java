@@ -185,6 +185,10 @@ public class Customer {
 	public String toString() {
 		return "Customer [id=" + id + ", email=" + email + ", firstName=" + firstName + ", lastName=" + lastName + "]";
 	}
+	
+	public String getFullName() {
+		return firstName + " " + lastName;
+	}
 }
 
 	
