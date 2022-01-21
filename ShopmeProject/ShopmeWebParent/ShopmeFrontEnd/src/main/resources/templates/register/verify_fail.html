@@ -1,6 +1,6 @@
 <!DOCTYPE html>
 <html xmlns:th="http://www.thymeLeaf.org">
-	<head th:replace="layouts :: header(${pageTitle}, 'none')"/>
+	<head th:replace="layouts :: header('Verification Failed!', 'none')"/>
 	
 	<body>
 		<div class = "container-fluid">
@@ -9,10 +9,8 @@
 			<div>&nbsp;</div>
 			
 			<div class="text-center">
-				<h2>Customer Registration</h2>
-				<h4>You have registerd successfully</h4>
-				<p>Please check your email to verify your account.</p>
-				<p><a th:href="@{/Login}">Login here</a>
+				<h2>Customer Verfication</h2>
+				<h4>Your account was already verified or the verification code is invalid.</h4>
 			</div>
 			
 			<div>&nbsp;</div>
