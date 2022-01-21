@@ -67,6 +67,8 @@ function deleteState() {
 }
 
 function updateState() {
+	if (!validateFormState()) return;
+	
 	url = contextPath + "states/save";
 	stateId = dropDownStates.val();
 	stateName = fieldStateName.val();
@@ -95,6 +97,8 @@ function updateState() {
 }
 
 function addState() {
+	if (!validateFormState()) return;
+	
 	url = contextPath + "states/save";
 	stateName = fieldStateName.val();
 
@@ -184,4 +188,14 @@ function loadCountriesForState(){
 	}).fail(function(){
 		showToastMessage("Error: Could not connect to server");
 	});
+}
+
+function validateFormState() {
+	formState = document.getElementById("formState");
+	if (!formState.checkValidity()) {
+		formState.reportValidity();
+		return false;
+	}	
+
+	return true;
 }
