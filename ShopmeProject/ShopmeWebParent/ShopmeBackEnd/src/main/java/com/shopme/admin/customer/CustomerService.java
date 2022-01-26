@@ -16,6 +16,7 @@ import org.springframework.stereotype.Service;
 import com.shopme.admin.setting.country.CountryRepository;
 import com.shopme.common.entity.Country;
 import com.shopme.common.entity.Customer;
+import com.shopme.common.entity.User;
 import com.shopme.common.exception.CustomerNotFoundException;
 
 @Service
@@ -97,4 +98,7 @@ public class CustomerService {
 		customerRepo.deleteById(id);
 	}
 	
+	public List<Customer> listAll(){
+		return (List<Customer>) customerRepo.findAll(Sort.by("firstName").ascending());
+	}
 }

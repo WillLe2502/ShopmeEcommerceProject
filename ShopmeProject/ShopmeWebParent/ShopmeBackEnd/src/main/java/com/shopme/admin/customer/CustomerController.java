@@ -1,6 +1,9 @@
 package com.shopme.admin.customer;
 
+import java.io.IOException;
 import java.util.List;
+
+import javax.servlet.http.HttpServletResponse;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
@@ -24,7 +27,7 @@ public class CustomerController {
 	
 	@GetMapping("/customers")
 	public String listFirstPage(Model model) {
-		return listByPage(1, model, "firstName", "asc", null);
+		return listByPage(1, model, "id", "asc", null);
 	}
 	
 	@GetMapping("/customers/pages/{pageNum}")
@@ -121,4 +124,11 @@ public class CustomerController {
 		return "redirect:/customers";
 	}
 	
+	@GetMapping("/customers/export/csv")
+	public void exportToCSV(HttpServletResponse response) throws IOException {
+		List<Customer> listCustomers = service.listAll();
+		
+		CustomerCSVExporter exporter = new CustomerCSVExporter();
+		exporter.export(listCustomers, response);
+	} 
 }
