@@ -71,7 +71,6 @@ public class CustomerService {
 		Customer existCustomer = customerRepo.findByEmail(email);
 
 		if (existCustomer != null && existCustomer.getId() != id) {
-			// found another customer having the same email
 			return false;
 		}
 

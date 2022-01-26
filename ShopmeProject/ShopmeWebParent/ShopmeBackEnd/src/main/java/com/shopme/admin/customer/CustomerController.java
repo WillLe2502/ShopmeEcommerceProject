@@ -64,7 +64,9 @@ public class CustomerController {
 	
 	@GetMapping("/customers/{id}/enabled/{status}")
 	public String updateCustomerEnabledStatus(@PathVariable("id") Integer id,
-			@PathVariable("status") boolean enabled, RedirectAttributes redirectAttributes) {
+											  @PathVariable("status") boolean enabled, 
+											  RedirectAttributes redirectAttributes) {
+		
 		service.updateCustomerEnabledStatus(id, enabled);
 		String status = enabled ? "enabled" : "disabled";
 		String message = "The Customer ID " + id + " has been " + status;
