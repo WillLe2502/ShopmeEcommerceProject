@@ -6,17 +6,14 @@ import java.util.NoSuchElementException;
 import javax.transaction.Transactional;
 
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.data.domain.Page;
-import org.springframework.data.domain.PageRequest;
-import org.springframework.data.domain.Pageable;
 import org.springframework.data.domain.Sort;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 
+import com.shopme.admin.paging.PagingAndSortingHelper;
 import com.shopme.admin.setting.country.CountryRepository;
 import com.shopme.common.entity.Country;
 import com.shopme.common.entity.Customer;
-import com.shopme.common.entity.User;
 import com.shopme.common.exception.CustomerNotFoundException;
 
 @Service
@@ -33,22 +30,8 @@ public class CustomerService {
 	@Autowired 
 	private PasswordEncoder passwordEncoder;
 	
-	public Page<Customer> listByPage(int pageNum, String sortField, String sortDir, String keyword){
-		Sort sort = Sort.by(sortField);
-		
-		if(sortDir.equals("asc")) {
-			sort = sort.ascending();
-		} else if(sortDir.equals("desc")) {
-			sort = sort.descending();
-		}
-		
-		Pageable pageable = PageRequest.of(pageNum - 1, CUSTOMERS_PER_PAGE, sort);
-		
-		if (keyword != null) {
-			return customerRepo.findAll(keyword, pageable);
-		}
-		
-		return customerRepo.findAll(pageable);
+	public void listByPage(int pageNum, PagingAndSortingHelper helper){
+		helper.listEntities(pageNum, CUSTOMERS_PER_PAGE, customerRepo);
 	}
 	
 	public void updateCustomerEnabledStatus(Integer id, boolean enabled) {
