@@ -11,6 +11,10 @@
 				<h2>Customer Login</h2>
 			</div>
 			
+			<div class="m-3">
+				<a class="btn btn-lg btn-secondary fab fa-google" th:href="@{/oauth2/authorization/google}">&nbsp; Continue with Google</a>
+			</div>
+			
 			<form th:action="@{/login}" method="POST" style="max-width: 350px; margin: 0 auto">
 				<div th:if="${param.error}">
 					<p class ="text-danger">[[${session.SPRING_SECURITY_LAST_EXCEPTION.message}]]</p>
@@ -36,6 +40,10 @@
 					</p>
 				</div>
 			</form>
+			<div> &nbsp; &nbsp; </div>
+			<div> 
+				Dont't have an account? <a th:href="@{/register}"><b>Sign up</b></a>
+			</div>
 		</div>
 		
 		<div> &nbsp; &nbsp; </div>

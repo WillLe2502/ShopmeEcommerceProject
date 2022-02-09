@@ -1,25 +1,24 @@
 <!DOCTYPE html>
 <html xmlns:th="http://www.thymeLeaf.org">
-	<head th:replace="layouts :: header('Verification Succeeded!', 'none')"/>
-	
-	<body>
-		<div class = "container-fluid">
-			<div th:replace="layouts :: divnavbar"/>
-			
-			<div>&nbsp;</div>
-			
-			<div class="text-center">
-				<h2>Customer Verfication</h2>
-				<h4>Contratulations! Your account has been verified.</h4>
-				<p><a th:href="@{/Login}">Login Now</a>
-			</div>
-			
-			<div>&nbsp;</div>
-			
+<head th:replace="layouts :: header('Verification Succeeded!', 'none')"/>
+<body>
+	<div class = "container-fluid">
+		<div th:replace="layouts :: divnavbar"/>
+		
+		<div>&nbsp;</div>
+		
+		<div class="text-center">
+			<h2>Customer Verfication</h2>
+			<h4>Contratulations! Your account has been verified.</h4>
+			<p><a th:href="@{/login}">Login Now</a>
 		</div>
 		
-		<div th:replace="layouts :: footer"/>
-	</body>
+		<div>&nbsp;</div>
+		
+	</div>
+	
+	<div th:replace="layouts :: footer"/>
+</body>
 	
 	
 </html>
