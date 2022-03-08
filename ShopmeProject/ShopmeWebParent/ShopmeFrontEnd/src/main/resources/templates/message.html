@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeLeaf.org">
+	<head th:replace="layouts :: header(${pageTitle}, 'none')"/>
+	
+	<body>
+		<div class = "container-fluid text-center">
+			<div th:replace="layouts :: divnavbar"/>
+			
+			<div>&nbsp;</div>
+			
+			<div th:if="${title != null}">
+				<h2>[[${title}]]</h2>
+			</div>
+			
+			<div th:if="${message != null}">
+				<h3>[[${message}]]</h3>
+			</div>
+		</div>
+		
+		<div th:replace="layouts :: footer"/>
+	</body>
+	
+	
+</html>
