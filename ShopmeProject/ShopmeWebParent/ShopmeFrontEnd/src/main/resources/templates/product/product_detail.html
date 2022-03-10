@@ -65,9 +65,7 @@
 					<span th:unless="${product.instock}" class="text-danger"><b>Out of Stock</b></span>
 				</div>
 				
-				<div class="mt-2">
-					<input type="text" size="5" value="1"/>
-				</div>
+				<div th:replace="cart/quantity_control :: quantity_control(1, ${product.id})"></div>
 				
 				<div class="mt-3">
 					<input type="button" value="Add to Cart" class="btn btn-primary"/>
@@ -103,7 +101,7 @@
 		
 	</div>
 	<div th:replace="product/image_carousel :: content"></div>
-	
+	<div th:replace="fragments :: modal_dialog"></div>
 	<div th:replace="layouts :: footer"></div>
 	
 	<script type="text/javascript">
@@ -124,9 +122,9 @@
 				$("#carouselExampleIndicators").carousel(imageIndex);
 			})
 		});
-		
-		
 	</script>
+	<script type="text/javascript" th:src="@{/js/common_modal.js}"></script>
+	<script type="text/javascript" th:src="@{/js/quality_control.js}"></script>
 </body>
 	
 	
