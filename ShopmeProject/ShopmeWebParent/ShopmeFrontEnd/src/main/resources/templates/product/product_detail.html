@@ -6,26 +6,27 @@
 <body>
 	<div class = "container-fluid">
 		<div th:replace="layouts :: divnavbar"> </div>
-		<div th:replace="layouts :: search_nav"/>
+		<div th:replace="layouts :: search_nav"></div>
 		<div th:replace="breadcrumb :: content"> </div>
 		
 		<div class="row">
 			<div class="col-sm">
-				<div class="m-2 border p-1">
-					<img id="bigImage" th:src="@{${product.mainImagePath}}" class="img-fluid"/>
+				<div>
+					<img id="bigImage" th:src="@{${product.mainImagePath}}" class="img-fluid" index="0"/>
 				</div>
-				<div class="row justify-content-center mt-4">
-					<div  class="m-2 border p-1">
+				<div class="row justify-content-center">
+					<div class="m-2 border border-secondary p-1">
 						<img class="imageThumbnail" th:src="@{${product.mainImagePath}}" height="50" index="0"/>
 					</div>
 					<th:block th:each="extraImage, status : ${product.images}">
-						<div  class="m-2 border p-1">
+						<div class="m-2 border border-secondary p-1">
 							<img class="imageThumbnail" th:src="@{${extraImage.imagePath}}" height="50" 
 								th:index="${status.count}"/>
 						</div>
 					</th:block>
 				</div>
 			</div>
+			
 			<div class="col-sm">
 				<div>
 					<h2>[[${product.name}]]</h2>
@@ -55,32 +56,33 @@
 				
 				<div >&nbsp;</div>
 				
-				<div th:utext="${product.shortDescription}">
-				</div>
+				<div th:utext="${product.shortDescription}"></div>
 			</div>
 			
 			<div class="col-sm-2">
-				<div class="mt-2">
+				<div>
 					<span th:if="${product.instock}" class="text-success"><b>In Stock</b></span>
 					<span th:unless="${product.instock}" class="text-danger"><b>Out of Stock</b></span>
 				</div>
 				
-				<div th:replace="cart/quantity_control :: quantity_control(1, ${product.id})"></div>
-				
-				<div class="mt-3">
-					<input type="button" value="Add to Cart" class="btn btn-primary"/>
-				</div>
+				<th:block th:if="${product.instock}">
+					<div th:replace="cart/quantity_control :: quantity_control(1, ${product.id})"></div>
+					<div class="mt-3">
+						<input type="button" value="Add to Cart" id="buttonAddToCart" class="btn btn-primary"/>
+					</div>
+				</th:block>
 			</div>
 		</div>
-		
+	</div>
+	
+	<div class = "container-fluid">
 		<div class="row">
 			<div class="col-12">
 				<div><hr/></div>
 				<div>
-					<h3>Product Description</h3>
+					<h3>Product Description:</h3>
 				</div>
-				<div th:utext="${product.fullDescription}">
-				</div>
+				<div th:utext="${product.fullDescription}"></div>
 			</div>
 		</div>
 		
@@ -98,13 +100,20 @@
 				</th:block>
 			</div>
 		</div>
+		<div >&nbsp;</div>
+		
+		<div th:replace="product/image_carousel :: content"></div>
+		<div th:replace="fragments :: modal_dialog"></div>
+		<div th:replace="layouts :: footer"></div>
 		
 	</div>
-	<div th:replace="product/image_carousel :: content"></div>
-	<div th:replace="fragments :: modal_dialog"></div>
-	<div th:replace="layouts :: footer"></div>
 	
 	<script type="text/javascript">
+		contextPath = "[[@{/}]]";
+		productId = "[[${product.id}]]";
+		var csrfHeaderName = "[[${_csrf.headerName}]]";
+		var csrfValue = "[[${_csrf.token}]]";	
+	
 		$(document).ready(function(){
 			bigImage = $("#bigImage");
 			
@@ -124,7 +133,8 @@
 		});
 	</script>
 	<script type="text/javascript" th:src="@{/js/common_modal.js}"></script>
-	<script type="text/javascript" th:src="@{/js/quality_control.js}"></script>
+	<script type="text/javascript" th:src="@{/js/quantity_control.js}"></script>
+	<script type="text/javascript" th:src="@{/js/add_to_cart.js}"></script>
 </body>
 	
 	

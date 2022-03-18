@@ -1,4 +1,4 @@
-function showModalDialog(title, message){
+function showModalDialog(title, message) {
 	$("#modalTitle").text(title);
 	$("#modalBody").text(message);
 	$("#modalDialog").modal();

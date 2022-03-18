@@ -26,8 +26,6 @@ public class CartItemRepositoryTest {
 	
 	@Autowired
 	private TestEntityManager entityManager;
-
-	private CartItem save;
 	
 	@Test
 	public void testSaveItem() {
@@ -42,7 +40,26 @@ public class CartItemRepositoryTest {
 		newItem.setProduct(product);
 		newItem.setQuantity(1);
 		
-		 CartItem savedItem = repo.save(newItem);
+		CartItem savedItem = repo.save(newItem);
+		
+		assertThat(savedItem.getId()).isGreaterThan(0);
+		
+	}
+	
+	@Test
+	public void testSaveItem2() {
+		Integer customerId = 1;
+		Integer productId = 1;
+		
+		Customer customer = entityManager.find(Customer.class, customerId);
+		Product product = entityManager.find(Product.class, productId);
+		
+		CartItem newItem = new CartItem();
+		newItem.setCustomer(customer);
+		newItem.setProduct(product);
+		newItem.setQuantity(1);
+		
+		CartItem savedItem = repo.save(newItem);
 		
 		assertThat(savedItem.getId()).isGreaterThan(0);
 		
