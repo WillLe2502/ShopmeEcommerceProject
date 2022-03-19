@@ -33,6 +33,8 @@ public class ShoppingCartRestController {
 			
 		} catch (CustomerNotFoundException ex) {
 			return "You must login to add this product to cart.";
+		} catch (ShoppingCartException ex) {
+			return ex.getMessage();
 		}
 	}
 	
