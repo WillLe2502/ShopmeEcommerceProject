@@ -17,7 +17,6 @@ import com.lowagie.text.pdf.PdfPTable;
 import com.lowagie.text.pdf.PdfWriter;
 import com.shopme.admin.AbstractExporter;
 import com.shopme.common.entity.Brand;
-import com.shopme.common.entity.User;
 
 public class BrandPdfExporter extends AbstractExporter{
 	
