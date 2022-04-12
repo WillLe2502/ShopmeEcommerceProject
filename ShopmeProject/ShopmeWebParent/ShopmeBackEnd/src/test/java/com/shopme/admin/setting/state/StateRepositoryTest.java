@@ -23,7 +23,9 @@ public class StateRepositoryTest {
 
 	@Autowired
 	private StateRepository repo;
-	@Autowired private TestEntityManager entityManager;
+	
+	@Autowired 
+	private TestEntityManager entityManager;
 	
 	@Test
 	public void testCreateStatesInIndia() {
