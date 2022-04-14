@@ -1,4 +1,4 @@
-package com.shopme.admin.address;
+package com.shopme.address;
 
 import static org.assertj.core.api.Assertions.assertThat;
 
@@ -62,6 +62,29 @@ public class AddressRepositoryTest {
 	}
 	
 	@Test
+	public void testCreateNew2() {
+		Integer customerId = 1;
+		Integer countryId = 16; // USA
+
+		Address newAddress = new Address();
+		
+		newAddress.setCustomer(new Customer(customerId));
+		newAddress.setCountry(new Country(countryId));
+		newAddress.setFirstName("Abbe");
+		newAddress.setLastName("Seimei");
+		newAddress.setPhoneNumber("123-456-7890");
+		newAddress.setAddressLine1("204 CumberLand HW");
+		newAddress.setCity("New Delhi");
+		newAddress.setState("AEZ");
+		newAddress.setPostalCode("789452");
+
+		Address savedAddress = repo.save(newAddress);
+
+		assertThat(savedAddress).isNotNull();
+		assertThat(savedAddress.getId()).isGreaterThan(0);
+	}
+	
+	@Test
 	public void testFindByCustomer() {
 		Integer customerId = 5;
 		List<Address> listAddresses = repo.findByCustomer(new Customer(customerId));
@@ -83,14 +106,15 @@ public class AddressRepositoryTest {
 
 	@Test
 	public void testUpdate() {
-		Integer addressId = 1;
-		String phoneNumber = "646-232-3932";
+		Integer addressId = 3;
+//		String phoneNumber = "646-232-3932";
 
 		Address address = repo.findById(addressId).get();
-		address.setPhoneNumber(phoneNumber);
+//		address.setPhoneNumber(phoneNumber);
+		address.setDefaultForShipping(true);
 
 		Address updatedAddress = repo.save(address);
-		assertThat(updatedAddress.getPhoneNumber()).isEqualTo(phoneNumber);
+//		assertThat(updatedAddress.getPhoneNumber()).isEqualTo(phoneNumber);
 	}
 
 	@Test

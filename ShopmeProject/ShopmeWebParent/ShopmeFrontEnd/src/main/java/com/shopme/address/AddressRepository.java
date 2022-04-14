@@ -1,4 +1,4 @@
-package com.shopme.admin.address;
+package com.shopme.address;
 
 import java.util.List;
 
