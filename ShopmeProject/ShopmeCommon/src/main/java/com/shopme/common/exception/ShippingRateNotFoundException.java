@@ -1,4 +1,4 @@
-package com.shopme.admin.shippingrate;
+package com.shopme.common.exception;
 
 public class ShippingRateNotFoundException extends Exception {
 
