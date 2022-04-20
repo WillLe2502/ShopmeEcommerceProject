@@ -28,10 +28,10 @@ public class ShippingRateRepositoryTest {
 	
 	@Test
 	public void testCreateNew() {
-		Country india = new Country(106);
+		Country vietnam = new Country(242);
 		ShippingRate newRate = new ShippingRate();
-		newRate.setCountry(india);
-		newRate.setState("Maharashtra");
+		newRate.setCountry(vietnam);
+		newRate.setState("SaiGon");
 		newRate.setRate(8.25f);
 		newRate.setDays(3);
 		newRate.setCodSupported(true);
