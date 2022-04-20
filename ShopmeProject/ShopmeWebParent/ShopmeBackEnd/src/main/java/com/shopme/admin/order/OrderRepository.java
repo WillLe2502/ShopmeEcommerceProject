@@ -9,6 +9,8 @@ import com.shopme.common.entity.Order;
 
 public interface OrderRepository extends PagingAndSortingRepository<Order, Integer> {
 	
+	public Long countById(Integer id);
+	
 	@Query("SELECT o FROM Order o WHERE o.firstName LIKE %?1% OR"
 									+ " o.lastName LIKE %?1% OR"
 									+ " o.phoneNumber LIKE %?1% OR"
@@ -23,4 +25,6 @@ public interface OrderRepository extends PagingAndSortingRepository<Order, Integ
 									+ " o.customer.firstName LIKE %?1% OR"
 									+ " o.customer.lastName LIKE %?1%")
 	public Page<Order> findAll(String keyword, Pageable pageable);
+	
+	
 }

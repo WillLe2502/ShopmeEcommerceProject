@@ -50,7 +50,7 @@
 							&nbsp; 
 							<div th:replace="fragments :: edit('order', '/orders/edit/' + ${order.id})" />
 							&nbsp; 
-							<div th:replace="fragments :: delete('order', ${order.id}, '/orders/delete/' + ${order.id}, true)" />						
+							<div th:replace="fragments :: delete('order', ${order.id}, '/orders/delete/' + ${order.id}, true)" />
 						</td>
 					</tr>
 				</tbody>
@@ -86,6 +86,7 @@
 		$(document).ready(function() {
 			handleLinkViewCustomerDetails();
 			handleLinkViewOrderDetails();
+			handleLinkDeleteOrder();
 		});
 		
 		function handleLinkViewCustomerDetails() {
@@ -103,6 +104,13 @@
 				$("#orderDetailModal").modal("show").find(".modal-content").load(linkDetailURL);
 			});		
 		}
+		
+		function handleLinkDeleteOrder() {
+		$(".link-delete").on("click", function(e) {
+			e.preventDefault();
+			showDeleteConfirmModal($(this), 'order');
+		});		
+	}
 		
 	</script>
 </body>
