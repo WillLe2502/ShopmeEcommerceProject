@@ -42,37 +42,38 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter{
 	@Override
 	protected void configure(HttpSecurity http) throws Exception {
 		http.authorizeRequests()
-			.antMatchers("/users/**").hasAuthority("Admin")
-			.antMatchers("/settings/**").hasAuthority("Admin")
-			.antMatchers("/customers/**").hasAnyAuthority("Admin", "Salesperson")
-			.antMatchers("/countries/**").hasAuthority("Admin")
-			.antMatchers("/states/**").hasAuthority("Admin")
-			.antMatchers("/categories/**").hasAnyAuthority("Admin","Editor")
-			.antMatchers("/brands/**").hasAnyAuthority("Admin", "Editor")
+			.antMatchers("/users/**", "/settings/**", "/countries/**", "/states/**").hasAuthority("Admin")
 			
-			.antMatchers("/products", "/products/", "/products/detail/**", "/products/pages/**")
-				.hasAnyAuthority("Admin", "Editor", "Salesperson", "Shipper")
-			.antMatchers("/products/new", "/products/delete/**")
-				.hasAnyAuthority("Admin", "Editor")
+			.antMatchers("/categories/**", "/brands/**").hasAnyAuthority("Admin", "Editor")
+			
+			.antMatchers("/products/new", "/products/delete/**").hasAnyAuthority("Admin", "Editor")
+			
 			.antMatchers("/products/edit/**", "/products/save", "/products/check_unique")
 				.hasAnyAuthority("Admin", "Editor", "Salesperson")
+				
+			.antMatchers("/products", "/products/", "/products/detail/**", "/products/page/**")
+				.hasAnyAuthority("Admin", "Editor", "Salesperson", "Shipper")
+
 			.antMatchers("/products/**").hasAnyAuthority("Admin", "Editor")
-			
-			
-			
-			.anyRequest()
-			.authenticated()
+
+			.antMatchers("/customers/**").hasAnyAuthority("Admin", "Salesperson")
+			.antMatchers("/customers/**", "/orders/**").hasAnyAuthority("Admin", "Salesperson")
+
+			.anyRequest().authenticated()
 			.and()
-			.formLogin()
+			.formLogin()			
 				.loginPage("/login")
 				.usernameParameter("email")
 				.permitAll()
 			.and().logout().permitAll()
 			.and()
 				.rememberMe()
-					.key("qwertyuiop")
+					.key("AbcDefgHijKlmnOpqrs_1234567890")
 					.tokenValiditySeconds(7 * 24 * 60 * 60);
+					;
+			
 	}
+
 
 	@Override
 	public void configure(WebSecurity web) throws Exception {

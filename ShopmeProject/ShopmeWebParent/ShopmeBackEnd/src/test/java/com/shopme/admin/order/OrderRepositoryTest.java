@@ -33,8 +33,8 @@ public class OrderRepositoryTest {
 	
 	@Test
 	public void testCreateNewOrderWithSingleProduct() {
-		Customer customer = entityManager.find(Customer.class, 1);
-		Product product = entityManager.find(Product.class, 1);
+		Customer customer = entityManager.find(Customer.class, 20);
+		Product product = entityManager.find(Product.class, 80);
 
 		Order mainOrder = new Order();
 		
@@ -42,24 +42,24 @@ public class OrderRepositoryTest {
 		mainOrder.setCustomer(customer);
 		mainOrder.copyAddressFromCustomer();
 		
-		mainOrder.setShippingCost(10);
+		mainOrder.setShippingCost(20);
 		mainOrder.setProductCost(product.getCost());
 		mainOrder.setTax(0);
 		mainOrder.setSubtotal(product.getPrice());
-		mainOrder.setTotal(product.getPrice() + 10);
+		mainOrder.setTotal(product.getPrice() + 20);
 
 		mainOrder.setPaymentMethod(PaymentMethod.CREDIT_CARD);
-		mainOrder.setStatus(OrderStatus.NEW);
+		mainOrder.setStatus(OrderStatus.PACKAGED);
 		mainOrder.setDeliverDate(new Date());
-		mainOrder.setDeliverDays(1);
+		mainOrder.setDeliverDays(4);
 
 		OrderDetail orderDetail = new OrderDetail();
 		orderDetail.setProduct(product);
 		orderDetail.setOrder(mainOrder);
 		orderDetail.setProductCost(product.getCost());
-		orderDetail.setShippingCost(10);
-		orderDetail.setQuantity(1);
-		orderDetail.setSubtotal(product.getPrice());
+		orderDetail.setShippingCost(20);
+		orderDetail.setQuantity(2);
+		orderDetail.setSubtotal(product.getPrice() * 2);
 		orderDetail.setUnitPrice(product.getPrice());
 
 		mainOrder.getOrderDetails().add(orderDetail);
@@ -71,9 +71,9 @@ public class OrderRepositoryTest {
 	
 	@Test
 	public void testCreateNewOrderWithMulitpleProduct() {
-		Customer customer = entityManager.find(Customer.class, 2);
-		Product product1 = entityManager.find(Product.class, 3);
-		Product product2 = entityManager.find(Product.class, 5);
+		Customer customer = entityManager.find(Customer.class, 35);
+		Product product1 = entityManager.find(Product.class, 33);
+		Product product2 = entityManager.find(Product.class, 44);
 		
 		Order mainOrder = new Order();
 		
@@ -85,7 +85,7 @@ public class OrderRepositoryTest {
 		orderDetail1.setProduct(product1);
 		orderDetail1.setOrder(mainOrder);
 		orderDetail1.setProductCost(product1.getCost());
-		orderDetail1.setShippingCost(10);
+		orderDetail1.setShippingCost(30);
 		orderDetail1.setQuantity(1);
 		orderDetail1.setSubtotal(product1.getPrice());
 		orderDetail1.setUnitPrice(product1.getPrice());
@@ -102,17 +102,17 @@ public class OrderRepositoryTest {
 		mainOrder.getOrderDetails().add(orderDetail1);
 		mainOrder.getOrderDetails().add(orderDetail2);
 		
-		mainOrder.setShippingCost(30);
+		mainOrder.setShippingCost(50);
 		mainOrder.setProductCost(product1.getCost() + product2.getCost());
 		mainOrder.setTax(0);
 		
 		float subtotal = product1.getPrice() + product2.getPrice() * 2;
 		mainOrder.setSubtotal(subtotal);
 		
-		mainOrder.setTotal(subtotal + 30);
+		mainOrder.setTotal(subtotal + 50);
 
-		mainOrder.setPaymentMethod(PaymentMethod.COD);
-		mainOrder.setStatus(OrderStatus.PROCESSING);
+		mainOrder.setPaymentMethod(PaymentMethod.CREDIT_CARD);
+		mainOrder.setStatus(OrderStatus.PACKAGED);
 		mainOrder.setDeliverDate(new Date());
 		mainOrder.setDeliverDays(3);
 		
@@ -131,7 +131,7 @@ public class OrderRepositoryTest {
 	
 	@Test
 	public void testUpdateOrder() {
-		Integer orderId = 2;
+		Integer orderId = 1;
 		Order order = repo.findById(orderId).get();
 		
 		order.setStatus(OrderStatus.SHIPPING);
