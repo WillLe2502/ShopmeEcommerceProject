@@ -53,7 +53,7 @@ public class AddressController {
 		return customerService.getCustomerByEmail(email);
 	}
 	
-	@GetMapping("/address_book/add")
+	@GetMapping("/address_book/new")
 	public String addAddress(Model model) {
 		List<Country> listCountries = customerService.listAllCountries();
 		
@@ -108,6 +108,13 @@ public class AddressController {
 		Customer customer = getAuthenticatedCustomer(request);
 		addressService.setDafaultAddress(addressId, customer.getId());
 		
-		return "redirect:/address_book";
+		String redirectOption = request.getParameter("redirect");
+		String redirectURL = "redirect:/address_book";
+
+		if ("cart".equals(redirectOption)) {
+			redirectURL = "redirect:/cart";
+		}		
+
+		return redirectURL; 
 	}
 }

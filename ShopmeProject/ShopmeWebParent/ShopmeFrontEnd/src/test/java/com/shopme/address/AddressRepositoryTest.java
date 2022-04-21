@@ -142,7 +142,14 @@ public class AddressRepositoryTest {
 		Integer addressId = 3;
 		Integer customerId = 1;
 		repo.setNoneDefaultForOther(addressId, customerId);
+	}
+	
+	@Test
+	public void testGetDefault() {
+		Integer customerId = 5;
+		Address address = repo.findDefaultByCustomer(customerId);
 		
-		
+		assertThat(address).isNotNull();
+		System.out.println(address);
 	}
 }
