@@ -19,6 +19,7 @@
 		
 		<input type="hidden" th:field="*{id}" />
 		<input type="hidden" th:field="*{defaultForShipping}" />
+		<input type="hidden" name="redirect" th:value="${param.redirect}" />	
 		
 		<div class="border border-secondary rounded p-3">
 			<div class="form-group row">
@@ -97,7 +98,7 @@
 				</div>
 			</div>
 			
-			<<div class="text-center">
+			<div class="text-center">
 				<input type="submit" value="Save" class="btn btn-primary" />
 			</div>
 		</div>
