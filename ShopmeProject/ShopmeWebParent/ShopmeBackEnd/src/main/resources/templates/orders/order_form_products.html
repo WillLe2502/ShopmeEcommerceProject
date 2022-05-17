@@ -6,6 +6,7 @@
 
 		<th:block th:each="detail, status : ${order.orderDetails}">
 		<div class="border rounded p-1" th:with="product = ${detail.product}">
+			<input type="hidden" name="productId" th:value="${product.id}" class="hiddenProductId"/>
 			<div class="row">
 				<div class="col-1">
 					<div>[[${status.count}]]</div>				
@@ -48,7 +49,7 @@
 					</td>
 				</tr>
 				<tr>
-					<td>Subtotal:</td>
+					<td>SubTotal:</td>
 					<td>
 						<input type="text" readonly="readonly" class="form-control m-1 subtotal-output"
 							th:id="'subtotal' + ${status.count}" 
