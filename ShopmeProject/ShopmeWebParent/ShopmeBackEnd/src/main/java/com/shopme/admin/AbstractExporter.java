@@ -22,7 +22,6 @@ public class AbstractExporter {
 		String headerKey= "Content-Disposition";
 		String headerValue = "attachment; filename=" + fileName;
 		response.setHeader(headerKey, headerValue);
-		
 	}
 	
 }
