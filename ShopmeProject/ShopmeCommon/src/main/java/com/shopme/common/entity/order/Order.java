@@ -1,6 +1,7 @@
 package com.shopme.common.entity.order;
 
 import java.text.DateFormat;
+import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Date;
@@ -189,6 +190,7 @@ public class Order extends AbstractAddress{
 				+ ", customer=" + customer.getFullName() + "]";
 	}
 	
+	@Transient
 	public String getDestination() {
 		String destination =  city + ", ";
 		if (state != null && !state.isEmpty()) destination += state + ", ";
@@ -235,6 +237,16 @@ public class Order extends AbstractAddress{
 	public String getDeliverDateOnForm() {
 		DateFormat dateFormatter = new SimpleDateFormat("yyyy-MM-dd");
 		return dateFormatter.format(this.deliverDate);
+	}
+	
+	public void setDeliverDateOnForm(String dateString) {
+		DateFormat dateFormatter = new SimpleDateFormat("yyyy-MM-dd");
+
+		try {
+			this.deliverDate = dateFormatter.parse(dateString);
+		} catch (ParseException e) {
+			e.printStackTrace();
+		} 		
 	}
 
 }

@@ -14,7 +14,8 @@
 			
 			<form th:action="@{/orders/save}" method="POST" 
 				enctype="multipart/form-data"
-				th:object="${order}">
+				th:object="${order}"
+				onsubmit="return processFormBeforeSubmit();">
 				
 				<input type="hidden" th:field="*{id}"/>
 				<div>
