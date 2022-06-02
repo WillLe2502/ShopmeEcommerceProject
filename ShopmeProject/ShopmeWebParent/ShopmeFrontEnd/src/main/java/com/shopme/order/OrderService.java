@@ -74,13 +74,25 @@ public class OrderService {
 		}
 		
 		OrderTrack newTrack = new OrderTrack();
+		OrderTrack paidTrack = new OrderTrack();
+		
 		newTrack.setOrder(newOrder);
 		newTrack.setUpdatedTime(new Date());
 		newTrack.setStatus(OrderStatus.NEW);
 		newTrack.setNotes(OrderStatus.NEW.defaultDescription());
 		
+		if(paymentMethod.equals(paymentMethod.PAYPAL)) {
+			paidTrack.setOrder(newOrder);
+			paidTrack.setUpdatedTime(new Date());
+			paidTrack.setStatus(OrderStatus.PAID);
+			paidTrack.setNotes(OrderStatus.PAID.defaultDescription());
+		}
+		
 		List<OrderTrack> orderTracks = newOrder.getOrderTracks();
 		orderTracks.add(newTrack);
+		orderTracks.add(paidTrack);
+		
+		
 		
 		return repo.save(newOrder);
 	}
