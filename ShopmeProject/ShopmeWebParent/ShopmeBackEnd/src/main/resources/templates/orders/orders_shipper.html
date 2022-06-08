@@ -51,6 +51,8 @@
 						</div>
 						<div>&nbsp;</div>
 						<div class="row">
+							<div th:replace="orders/order_status_fragment :: content(${order.processing}, 'PROCESSING', 'fa-spinner')"></div>
+						
 							<div th:replace="orders/order_status_fragment :: content(${order.picked}, 'PICKED', 'fa-people-carry')"></div>
 	
 							<div th:replace="orders/order_status_fragment :: content(${order.shipping}, 'SHIPPING', 'fa-shipping-fast')"></div>

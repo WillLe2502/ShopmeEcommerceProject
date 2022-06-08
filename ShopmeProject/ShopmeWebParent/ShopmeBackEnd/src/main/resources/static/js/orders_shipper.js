@@ -2,7 +2,8 @@ var iconNames = {
 	'PICKED':'fa-people-carry',
 	'SHIPPING':'fa-shipping-fast',
 	'DELIVERED':'fa-box-open',
-	'RETURNED':'fa-undo'	
+	'RETURNED':'fa-undo',
+	'PROCESSING':'fa-spinner'
 };
 
 var confirmText;  
