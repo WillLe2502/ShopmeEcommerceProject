@@ -1,6 +1,17 @@
 <!DOCTYPE html>
 <html xmlns:th = "http://www.thymeleaf.org">
-	
+
+<! –– Column Link ––----------------------------------------------------------------------> 
+	<th th:fragment="column_link(fieldName, columnLabel, removeTag)" th:remove="${removeTag}">
+		<a class="text-white"
+			th:href="@{${moduleURL} + '/pages/' + ${currentPage} + '?sortField=' + ${fieldName}  +'&sortDir=' + ${sortField != fieldName ? sortDir : reverseSortDir} + ${keyword != null ? '&keyword=' + keyword : ''} + ${categoryId != null ? '&categoryId=' + categoryId : ''}}">
+			[[${columnLabel}]]
+		</a>								
+		<span th:if="${sortField == fieldName}"
+			th:class="${sortDir == 'asc' ? 'fas fa-sort-up' : 'fas fa-sort-down'}" ></span>					
+	</th>
+
+
 <! –– Page Link ––----------------------------------------------------------------------> 
 
 	<a th:fragment="page_link(moduleURL, pageNum ,label)"
@@ -93,5 +104,10 @@
 	<div th:fragment="format_currency(amount)" th:remove="tag">
 		<span th:if="${CURRENCY_SYMBOL_POSITION == 'Before Price'}" th:remove="tag">[[${CURRENCY_SYMBOL}]]</span>[[${#numbers.formatDecimal(amount, 1, THOUSANDS_POINT_TYPE, DECIMAL_DIGITS, DECIMAL_POINT_TYPE)}]]<span th:if="${CURRENCY_SYMBOL_POSITION == 'After Price'}" th:remove="tag">[[${CURRENCY_SYMBOL}]]</span>
 	</div>
+
+<! –– Format Date/Time ––---------------------------------------------------------------------->
+<div th:fragment="format_time(dateTime)" th:remove="tag">
+	<span th:text="${#dates.format(dateTime, 'yyyy-MM-dd HH:mm:ss')}"></span>
+</div>	
 
 </html>
