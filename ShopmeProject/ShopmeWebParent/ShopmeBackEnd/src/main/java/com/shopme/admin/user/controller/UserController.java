@@ -16,7 +16,7 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
-import com.shopme.admin.FileUploadUtil;
+import com.shopme.admin.AmazonS3Util;
 import com.shopme.admin.paging.PagingAndSortingHelper;
 import com.shopme.admin.paging.PagingAndSortingParam;
 import com.shopme.admin.user.UserNotFoundException;
@@ -74,8 +74,8 @@ public class UserController {
 			
 			String uploadDir = "user-photos/" + savedUser.getId();
 			
-			FileUploadUtil.cleanDir(uploadDir);
-			FileUploadUtil.saveFile(uploadDir, fileName, multipartFile);
+			AmazonS3Util.removeFolder(uploadDir);
+			AmazonS3Util.uploadFile(uploadDir, fileName, multipartFile.getInputStream());	
 		} else {
 			if(user.getPhotos().isEmpty()) user.setPhotos(null);
 			service.save(user);
@@ -117,6 +117,9 @@ public class UserController {
 		
 		try {
 			service.delete(id);
+			String userPhotosDir = "user-photos/" + id;
+			AmazonS3Util.removeFolder(userPhotosDir);
+			
 			redirecAttritibutes.addFlashAttribute("message", "The User ID " + id + " has been deleted.");
 		} catch (UserNotFoundException ex) {
 			redirecAttritibutes.addFlashAttribute("message", ex.getMessage());

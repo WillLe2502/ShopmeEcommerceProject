@@ -16,7 +16,7 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
-import com.shopme.admin.FileUploadUtil;
+import com.shopme.admin.AmazonS3Util;
 import com.shopme.common.entity.Category;
 import com.shopme.common.exception.CategoryNotFoundException;
 
@@ -87,10 +87,10 @@ public class CategoryController {
 			category.setImage(fileName);
 			
 			Category savedCategory = service.save(category);
-			String uploadDir = "../categories-images/" + savedCategory.getId();
+			String uploadDir = "categories-images/" + savedCategory.getId();
 			
-			FileUploadUtil.cleanDir(uploadDir);
-			FileUploadUtil.saveFile(uploadDir, fileName, multipartFile);
+			AmazonS3Util.removeFolder(uploadDir);
+			AmazonS3Util.uploadFile(uploadDir, fileName, multipartFile.getInputStream());
 		} else {
 			service.save(category); 
 		}
@@ -137,8 +137,8 @@ public class CategoryController {
 		
 		try {
 			service.delete(id);
-			String categoryDir = "../category-images/" + id;
-			FileUploadUtil.removeDir(categoryDir);
+			String categoryDir = "categories-images/" + id;
+			AmazonS3Util.removeFolder(categoryDir);
 			
 			redirecAttritibutes.addFlashAttribute("message", "The Category ID " + id + " has been deleted.");
 		} catch (CategoryNotFoundException ex) {
