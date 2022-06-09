@@ -87,7 +87,7 @@ public class OrderService {
 		newTrack.setStatus(OrderStatus.NEW);
 		newTrack.setNotes(OrderStatus.NEW.defaultDescription());
 		
-		if(paymentMethod.equals(paymentMethod.PAYPAL)) {
+		if(paymentMethod.equals(paymentMethod.PAYPAL) || paymentMethod.equals(paymentMethod.CREDIT_CARD)) {
 			paidTrack.setOrder(newOrder);
 			paidTrack.setUpdatedTime(new Date());
 			paidTrack.setStatus(OrderStatus.PAID);
@@ -97,8 +97,6 @@ public class OrderService {
 		List<OrderTrack> orderTracks = newOrder.getOrderTracks();
 		orderTracks.add(newTrack);
 		orderTracks.add(paidTrack);
-		
-		
 		
 		return repo.save(newOrder);
 	}
