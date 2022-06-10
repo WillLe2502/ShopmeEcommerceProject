@@ -1,12 +1,15 @@
 server:
   port: 80
-  servlet:
-    context-path: /Shopme
+#  servlet:
+#    context-path: /Shopme
 spring:
   datasource:
     password: Sophie1610
     url: jdbc:mysql://localhost:3306/shopmedb
     username: root
+    hikari:
+      minimum-idle: 1
+      maximum-pool-size: 2
   jpa:
     hibernate:
       ddl-auto: update
